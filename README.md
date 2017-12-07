@@ -1,10 +1,8 @@
-This is data-x course project of UCB.
+This is data-x course project of UCB, 
 
 
 
-# B2B-Personalized-Automatic-Email-Reply
-
-This is data-x course project of UCB, I have developed the email generation system, which contains 2 main parts:
+I have developed the email generation system, which contains 2 main parts:
 
 Seq2Seq Model for email generating – which will automatically output the reply based on the input.
 API connects gmail to the Seq2Seq Model
