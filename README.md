@@ -1,5 +1,10 @@
 This is data-x course project from UCB.
 
+
+
+
+
+
 AI_training_and_email_detecting Folder contains the code for the email generation system, which contains 2 main parts:
 
 Seq2Seq Model for email generating – which will automatically output the reply based on the input.
