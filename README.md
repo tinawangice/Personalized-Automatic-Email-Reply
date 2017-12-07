@@ -15,7 +15,6 @@ Step2: Build LSTM layers with Keras
 After data preparation, we build 2 LSTM layers with Keras. 
 The embedded questions are input for first LSTM, which output a 300-dimension vector for each question. 
 The 300-dimension vector can be thought as the summary of the question, and become input for the second LSTM layer.
-The train_bot.py refers to: https://github.com/oswaldoludwig/Seq2seq-Chatbot-for-Keras
 
 Using GPU, it took 1 week to train 16,000 dialogues for 160 epochs,  
 and the loss has reduced from 8 at beginning to 0.03 now.
