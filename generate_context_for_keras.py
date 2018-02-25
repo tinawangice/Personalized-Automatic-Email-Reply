@@ -1,8 +1,9 @@
-import pandas as pd
-import numpy as np
-import tensorflow as tf
 import re
-import time
+
+import numpy as np
+import pandas as pd
+import tensorflow as tf
+
 # use 1.0.0 to run
 print(tf.__version__)
 
@@ -12,8 +13,8 @@ dir(tf.contrib)
 # Load the data
 lines = open('movie_lines.txt', encoding='utf-8', errors='ignore').read().split('\n')
 conv_lines = open('movie_conversations.txt', encoding='utf-8', errors='ignore').read().split('\n')
-#lines = open('./movie_lines.txt').read().split('\n')
-#conv_lines = open('./movie_conversations.txt').read().split('\n')
+# lines = open('./movie_lines.txt').read().split('\n')
+# conv_lines = open('./movie_conversations.txt').read().split('\n')
 
 # Create a dictionary to map each line's id with its text
 id2line = {}
@@ -23,9 +24,9 @@ for line in lines:
         id2line[_line[0]] = _line[4]
 
 # Create a list of all of the conversations' lines' ids.
-convs = [ ]
+convs = []
 for line in conv_lines[:-1]:
-    _line = line.split(' +++$+++ ')[-1][1:-1].replace("'","").replace(" ","")
+    _line = line.split(' +++$+++ ')[-1][1:-1].replace("'", "").replace(" ", "")
     convs.append(_line.split(','))
 
 # Sort the sentences into questions (inputs) and answers2 (targets)
@@ -33,14 +34,13 @@ questions = []
 answers = []
 
 for conv in convs:
-    for i in range(len(conv)-1):
+    for i in range(len(conv) - 1):
         questions.append(id2line[conv[i]])
-        answers.append(id2line[conv[i+1]])
-
+        answers.append(id2line[conv[i + 1]])
 
 # Check if we have loaded the data correctly
 limit = 0
-for i in range(limit+1000, limit+1005):
+for i in range(limit + 1000, limit + 1005):
     print(questions[i])
     print(answers[i])
     print()
@@ -88,11 +88,9 @@ clean_answers = []
 for answer in answers:
     clean_answers.append(clean_text(answer))
 
-
-
 # Take a look at some of the data to ensure that it has been cleaned well.
 limit = 0
-for i in range(limit+1000, limit+1005):
+for i in range(limit + 1000, limit + 1005):
     print(clean_questions[i])
     print(clean_answers[i])
     print()
@@ -127,29 +125,34 @@ short_questions = []
 short_answers = []
 
 for i in range(len(clean_questions)):
-    if len(clean_questions[i].split()) >= min_line_length and len(clean_questions[i].split()) <= max_line_length and len(clean_answers[i].split()) >= min_line_length and len(clean_answers[i].split()) <= max_line_length:
+    if len(clean_questions[i].split()) >= min_line_length and len(
+            clean_questions[i].split()) <= max_line_length and len(clean_answers[i].split()) >= min_line_length and len(
+            clean_answers[i].split()) <= max_line_length:
         short_questions.append(clean_questions[i])
         short_answers.append(clean_answers[i])
 # Filter out the answers2 that are too short/long
 
 
-
 # Compare the number of lines we will use with the total number of lines.
 print("# of questions:", len(short_questions))
 print("# of answers2:", len(short_answers))
-print("% of data used: {}%".format(round(len(short_questions)/len(questions),4)*100))
+print("% of data used: {}%".format(round(len(short_questions) / len(questions), 4) * 100))
 
-
-l1 = ['won’t','won\'t','wouldn’t','wouldn\'t','’m', '’re', '’ve', '’ll', '’s','’d', 'n’t', '\'m', '\'re', '\'ve', '\'ll', '\'s', '\'d', 'can\'t', 'n\'t', 'B: ', 'A: ', ',', ';', '.', '?', '!', ':', '. ?', ',   .', '. ,', 'EOS', 'BOS', 'eos', 'bos']
-l2 = ['will not','will not','would not','would not',' am', ' are', ' have', ' will', ' is', ' had', ' not', ' am', ' are', ' have', ' will', ' is', ' had', 'can not', ' not', '', '', ' ,', ' ;', ' .', ' ?', ' !', ' :', '? ', '.', ',', '', '', '', '']
+l1 = ['won’t', 'won\'t', 'wouldn’t', 'wouldn\'t', '’m', '’re', '’ve', '’ll', '’s', '’d', 'n’t', '\'m', '\'re', '\'ve',
+      '\'ll', '\'s', '\'d', 'can\'t', 'n\'t', 'B: ', 'A: ', ',', ';', '.', '?', '!', ':', '. ?', ',   .', '. ,', 'EOS',
+      'BOS', 'eos', 'bos']
+l2 = ['will not', 'will not', 'would not', 'would not', ' am', ' are', ' have', ' will', ' is', ' had', ' not', ' am',
+      ' are', ' have', ' will', ' is', ' had', 'can not', ' not', '', '', ' ,', ' ;', ' .', ' ?', ' !', ' :', '? ', '.',
+      ',', '', '', '', '']
 l3 = ['-', '_', ' *', ' /', '* ', '/ ', '\"', ' \\"', '\\ ', '--', '...', '. . .']
 
+
 def my_replace(raw_word):
-        for j, term in enumerate(l1):
-                raw_word = raw_word.replace(term,l2[j])
-        for term in l3:
-                raw_word = raw_word.replace(term,' ')
-        return clean_text(raw_word.lower())
+    for j, term in enumerate(l1):
+        raw_word = raw_word.replace(term, l2[j])
+    for term in l3:
+        raw_word = raw_word.replace(term, ' ')
+    return clean_text(raw_word.lower())
 
 
 fq = open('context2', 'w')

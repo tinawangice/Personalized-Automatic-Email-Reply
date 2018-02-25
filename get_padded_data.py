@@ -3,18 +3,9 @@
 import numpy as np
 
 np.random.seed(1234)  # for reproducibility
-import pandas as pd
-import os
-import csv
-import nltk
-import itertools
-import operator
 import pickle
 import numpy as np
 from keras.preprocessing import sequence
-from scipy import sparse, io
-from numpy.random import permutation
-import re
 
 questions_file = 'context'
 answers_file = 'answers'
