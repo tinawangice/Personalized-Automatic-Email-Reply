@@ -1,4 +1,3 @@
-
 # Email_generation_seq2seq_backend
 
 ## The email generation system contains 2 main parts: 
@@ -21,6 +20,9 @@ Using GPU, it took 1 week to train 16,000 dialogues for 160 epochs. The loss dec
 
 ### Step3: API connects to Gmail
 Finally, fetch_emails.py will fetch information from emails. The email body will generate from the trained Seq2seq model.
+
+
+
 
 
 
