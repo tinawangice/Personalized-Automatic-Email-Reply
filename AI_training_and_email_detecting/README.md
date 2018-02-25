@@ -1,6 +1,6 @@
 # Email_generation_seq2seq_backend
 
-## The email generation system, which contains 2 main parts: 
+## The email generation system contains 2 main parts: 
 
 #### 1.	Seq2Seq Model for email generating – which will automatically output the reply based on the input. 
 #### 2.	API connects gmail to the Seq2Seq Model 
