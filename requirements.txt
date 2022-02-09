@@ -41,7 +41,7 @@ selenium-requests==1.3
 six==1.11.0
 SQLAlchemy==1.2.0b2
 subprocess32==3.2.7
-tensorflow==1.4.1
+tensorflow==2.5.3
 tensorflow-tensorboard==0.4.0rc3
 Theano==1.0.1
 tldextract==2.1.0
