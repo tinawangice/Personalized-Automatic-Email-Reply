@@ -11,7 +11,7 @@ Flask-Compress==1.4.0
 Flask-Cors==3.0.3
 funcsigs==1.0.2
 futures==3.2.0
-html5lib==0.9999999
+html5lib==0.99999999
 idna==2.6
 itsdangerous==0.24
 Jinja2==2.10
